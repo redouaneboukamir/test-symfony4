@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 use App\Entity\Property;
-use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 // Relation avec le contenu des entité et variable de la db
+use App\Repository\PropertyRepository;
 // use Symfony\Component\Routing\Annotation\Route;
 
 class propertyController extends AbstractController
@@ -17,13 +17,13 @@ class propertyController extends AbstractController
     //  */
 
     // On réucpére la classe repository et en fait un constructeur
-    public function __construct(PropertyRepositoy $repository)
+    public function __construct(PropertyRepository $repository)
     {
         $this->repository = $repository;
     }
 
     public function index():Response{
-        // Create de property et remplissage de setter dans la variable
+        // Create de property et appel des setter dans la variable
         // $property = new Property();
         // $property->setTitle('Mon premier titre')
         //     ->setPrice(2000)
@@ -44,8 +44,10 @@ class propertyController extends AbstractController
         // $em->flush();
 
         // Injection du repository Property
-        $repository = $this->getDoctrine()->getRepository(Property::class);
-        dump($repository);
+        // $repository = $this->getDoctrine()->getRepository(Property::class);
+        // dump($repository);
+        $property = $this->repository->find(id);
+        dump($property);
         return $this->render('property/index.html.twig',[
             'current_menu' => 'properties'
         ]);
