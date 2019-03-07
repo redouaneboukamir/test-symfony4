@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Property;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 // Relation avec le contenu des entité et variable de la db
@@ -46,7 +47,7 @@ class propertyController extends AbstractController
         // Injection du repository Property
         // $repository = $this->getDoctrine()->getRepository(Property::class);
         // dump($repository);
-        $property = $this->repository->find(id);
+        $property = $this->repository->findOneBy();
         dump($property);
         return $this->render('property/index.html.twig',[
             'current_menu' => 'properties'
