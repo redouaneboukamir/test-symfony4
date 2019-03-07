@@ -20,7 +20,10 @@ class PropertyRepository extends ServiceEntityRepository
     }
 
     public function  findAllVisible(){
-
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

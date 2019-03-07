@@ -47,7 +47,7 @@ class propertyController extends AbstractController
         // Injection du repository Property
         // $repository = $this->getDoctrine()->getRepository(Property::class);
         // dump($repository);
-        $property = $this->repository->findOneBy();
+        $property = $this->repository->findAllVisible();
         dump($property);
         return $this->render('property/index.html.twig',[
             'current_menu' => 'properties'
