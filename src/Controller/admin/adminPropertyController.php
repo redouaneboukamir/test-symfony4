@@ -45,8 +45,9 @@ class adminPropertyController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $this->em->persist($property);
-            $this->addFlash('success', 'Bien creer avec succes');
             $this->em->flush();
+            $this->addFlash('success', 'Bien creer avec succes');
+            return $this->redirectToRoute('admin.property.index');
         }
         return $this->render('admin/property/new.html.twig', [
             'property' => $property,
