@@ -1,6 +1,7 @@
 home: 
   path: /
   controller: App\Controller\HomeController::index
+
 property.index:
   path: /biens
   controller: App\Controller\propertyController::index
@@ -10,6 +11,21 @@ property.show:
     controller: App\Controller\propertyController::show
     requirements:
       slug: '[a-z0-9\-]*'
-  #index:
+admin.property.index:
+  path: /admin
+  controller: App\Controller\admin\adminPropertyController::index
+admin.property.edit:
+  path: /admin/property/{id}
+  controller: App\Controller\admin\adminPropertyController::edit
+  methods: GET|POST
+admin.property.new:
+  path: /admin/bien/create
+  controller: App\Controller\admin\adminPropertyController::new
+admin.property.delete:
+    path: /admin/property/{id}
+    controller: App\Controller\admin\adminPropertyController::delete
+    methods: DELETE
+#index:
+
 #    path: /
 #    controller: App\Controller\DefaultController::index

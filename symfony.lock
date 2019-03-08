@@ -148,6 +148,9 @@
             ".env"
         ]
     },
+    "symfony/form": {
+        "version": "v4.2.4"
+    },
     "symfony/framework-bundle": {
         "version": "4.2",
         "recipe": {
@@ -176,6 +179,9 @@
     "symfony/inflector": {
         "version": "v4.2.4"
     },
+    "symfony/intl": {
+        "version": "v4.2.4"
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -185,8 +191,14 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/options-resolver": {
+        "version": "v4.2.4"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.6"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.10.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
@@ -211,6 +223,12 @@
             "config/packages/test/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/security-core": {
+        "version": "v4.2.4"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.2.4"
     },
     "symfony/stopwatch": {
         "version": "v4.2.4"
