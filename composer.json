@@ -7,6 +7,8 @@
         "ext-iconv": "*",
         "cocur/slugify": "^3.2",
         "doctrine/annotations": "^1.6",
+        "fzaninotto/faker": "^1.8",
+        "knplabs/knp-paginator-bundle": "^3.0",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "4.2.*",

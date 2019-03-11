@@ -4,7 +4,9 @@ namespace App\Controller;
 use App\Entity\Property;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 // Relation avec le contenu des entité et variable de la db
 use App\Repository\PropertyRepository;
@@ -25,7 +27,7 @@ class propertyController extends AbstractController
         $this->em = $em;
     }
 
-    public function index():Response{
+    public function index(PaginatorInterface $paginator, Request $request):Response{
         // Create de property et appel des setter dans la variable
         // $property = new Property();
         // $property->setTitle('Mon premier titre')
@@ -53,8 +55,14 @@ class propertyController extends AbstractController
         /*$property = $this->repository->findAllVisible();*/
 /*        $property[0]->setSold(true);
         $this->em->flush();*/
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1)/*page number*/,
+            12
+            );
         return $this->render('property/index.html.twig',[
-            'current_menu' => 'properties'
+            'current_menu' => 'properties',
+            'properties' => $properties
         ]);
     }
 
