@@ -28,6 +28,9 @@ admin.property.delete:
 login:
   path: /login
   controller: App\Controller\securityController::login
+  methods: GET|POST
+logout:
+  path: /logout
 
 #index:
 

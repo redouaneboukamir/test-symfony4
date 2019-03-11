@@ -1,3 +1,4 @@
+{#
 {% extends 'base.html.twig' %}
 {% block title %}Connect{% endblock %}
 {% block body %}
@@ -5,7 +6,7 @@
     <div class="container">
         {% if error %}
             <div class="alert alert-danger">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
+                {{ error.messageKey }}
             </div>
         {% endif %}
         <form action="{{ path('login') }}" method="post">
@@ -23,4 +24,4 @@
         </form>
     </div>
 
-{% endblock %}
+{% endblock %}#}
