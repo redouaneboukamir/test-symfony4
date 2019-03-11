@@ -25,6 +25,9 @@ admin.property.delete:
     path: /admin/property/{id}
     controller: App\Controller\admin\adminPropertyController::delete
     methods: DELETE
+login:
+  path: /login
+  controller: App\Controller\securityController::login
 
 #index:
 
