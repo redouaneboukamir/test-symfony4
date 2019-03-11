@@ -55,6 +55,13 @@ class propertyController extends AbstractController
         /*$property = $this->repository->findAllVisible();*/
 /*        $property[0]->setSold(true);
         $this->em->flush();*/
+
+//        Creer une entité qui va représenter notre recherche  nb piece etc..
+
+//        Creer un formulaire
+
+//        Gérer le traitement dans le controller
+
         $properties = $paginator->paginate(
             $this->repository->findAllVisibleQuery(),
             $request->query->getInt('page', 1)/*page number*/,
