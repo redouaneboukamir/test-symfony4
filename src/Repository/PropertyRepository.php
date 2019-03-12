@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Property;
+use App\Entity\propertySearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -25,10 +26,20 @@ class PropertyRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function  findAllVisibleQuery(): Query
+    public function  findAllVisibleQuery(propertySearch $search): Query
     {
-        return $this->findVisibleQuery()
-            ->getQuery();
+        $query = $this->findVisibleQuery();
+
+        if($search->getMaxPrice()){
+            $query = $query->andWhere('p.price <= :maxprice');
+            $query->setparameter('maxprice', $search->getMaxPrice());
+        }
+        if($search->getMinSurface()){
+            $query = $query
+                ->andWhere('p.surface > :minsurface')
+                ->setparameter('minsurface', $search->getMinSurface());
+        }
+        return $query->getQuery();
     }
     /**
      * @return Property[]

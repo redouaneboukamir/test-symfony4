@@ -3,6 +3,8 @@
 namespace App\Controller;
 use App\Entity\Property;
 
+use App\Entity\propertySearch;
+use App\Form\PropertySearchType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +30,26 @@ class propertyController extends AbstractController
     }
 
     public function index(PaginatorInterface $paginator, Request $request):Response{
+
+//        Gérer le traitement dans le controller
+        $search = new propertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+
+
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1)/*page number*/,
+            12
+            );
+        return $this->render('property/index.html.twig',[
+            'current_menu' => 'properties',
+            'properties' => $properties,
+            'form' => $form->createView()
+        ]);
+    }
+
+
         // Create de property et appel des setter dans la variable
         // $property = new Property();
         // $property->setTitle('Mon premier titre')
@@ -56,22 +78,6 @@ class propertyController extends AbstractController
 /*        $property[0]->setSold(true);
         $this->em->flush();*/
 
-//        Creer une entité qui va représenter notre recherche  nb piece etc..
-
-//        Creer un formulaire
-
-//        Gérer le traitement dans le controller
-
-        $properties = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
-            $request->query->getInt('page', 1)/*page number*/,
-            12
-            );
-        return $this->render('property/index.html.twig',[
-            'current_menu' => 'properties',
-            'properties' => $properties
-        ]);
-    }
 
     /*Autre ecriture que ce trouvant dans le cahier*/
     public function show(Property $property, string $slug): Response
